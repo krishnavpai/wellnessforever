@@ -31,7 +31,7 @@ export default function  taskPage(props) {
 		e.preventDefault();
 		try {
 			if (task._id) {
-				const { data } = await axios.put(`${url}` + "/" + task._id, {
+				const { data } = await axios.put("/api/task" + "/" + task._id, {
 					task: task.task,
 				});
 
@@ -55,7 +55,7 @@ export default function  taskPage(props) {
 				
 			} else {
 			
-				const { data } = await axios.post(url, task);
+				const { data } = await axios.post("/api/task", task);
 
 				// const {data} = await fetch("/api/task", {
 				// 	method: "POST",
@@ -96,7 +96,7 @@ export default function  taskPage(props) {
 		try {
 			const originalTasks = [...tasks];
 			const index = originalTasks.findIndex((t) => t._id === id);
-			const { data } = await axios.put(url + "/" + id, {
+			const { data } = await axios.put("/api/task" + "/" + id, {
 				completed: !originalTasks[index].completed,
 			});
 			originalTasks[index] = data.data;
@@ -119,7 +119,7 @@ export default function  taskPage(props) {
 
 	const deleteTask = async (id) => {
 		try {
-			const { data } = await axios.delete(url + "/" + id);
+			const { data } = await axios.delete("/api/task" + "/" + id);
 			// const {data} = await fetch("/api/task" + "/" + id, {
 			// 	method: "DELETE",
 			// 	headers: {

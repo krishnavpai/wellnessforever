@@ -1,13 +1,12 @@
 {
   "name": "wellness-forever",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "jest"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",

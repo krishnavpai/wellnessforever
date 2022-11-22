@@ -5,7 +5,8 @@ import AiFillDelete from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const url = "http://localhost:3000/api/task";
+// const url = "http://localhost:3000/api/task";
+const url = process.env.HOST+"/api/task";
 
 export default function taskPage(props) {
 	

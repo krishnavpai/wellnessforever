@@ -7,7 +7,7 @@ import Image from "next/image";
 import avatar from "../images/avatar.png";
 
 const navigation = [
-  { name: "REMINDERS", href: "/taskPage", current: true },
+  { name: "REMINDERS", href: "/taskPage", current: false },
   { name: "INVENTORY", href: `/dashboard`, current: false },
   { name: "APPOINTMENTS", href: `/appointment`, current: false },
   { name: "PHARMACIES", href: "/pharmacies", current: false },
@@ -50,7 +50,7 @@ export default function Example() {
                   <Link className =" text-white pt-1 font-mono font-bold"
                   href="/">
 
-                 Wellness Forever
+                 Wellness Forever+
                   </Link>
 
                 </div>

@@ -4,12 +4,19 @@ import styles from "../styles/Home.module.css";
 import AiFillDelete from "react-icons/ai";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// require ('dotenv').config();
 
-// const url = "http://localhost:3000/api/task";
-const url = process.env.HOST+"/api/task";
 
-export default function taskPage(props) {
-	
+// const url = "http://localhost:3000/api/task";s
+
+
+const url = process.env.NEXT_PUBLIC_API_TASK;
+// console.log(url)
+
+
+
+
+export default function  taskPage(props) {
 	const [tasks, setTasks] = useState(props.tasks);
 	const [task, setTask] = useState({ task: "" });
 
@@ -24,9 +31,21 @@ export default function taskPage(props) {
 		e.preventDefault();
 		try {
 			if (task._id) {
-				const { data } = await axios.put(url + "/" + task._id, {
+				const { data } = await axios.put(`${url}` + "/" + task._id, {
 					task: task.task,
 				});
+
+				// const {data} = await fetch(	url + "/" + task._id, {
+				// 	method: "PUT",
+				// 	headers: {
+				// 		"Content-Type": "application/json",
+				// 	},
+				// 	body: JSON.stringify({
+				// 		task: task.task,
+				// 	}),
+				// });
+
+
 				const originalTasks = [...tasks];
 				const index = originalTasks.findIndex((t) => t._id === task._id);
 				originalTasks[index] = data.data;
@@ -35,13 +54,26 @@ export default function taskPage(props) {
 				console.log(data.message);
 				
 			} else {
+			
 				const { data } = await axios.post(url, task);
+
+				// const {data} = await fetch("/api/task", {
+				// 	method: "POST",
+				// 	headers: {
+				// 		"Content-Type": "application/json",
+				// 	},
+				// 	body: JSON.stringify(task),
+				// });
+
+		
+				
+				console.log(data);
 				setTasks((prev) => [...prev, data.data]);
 				setTask({ task: "" });
 				console.log(data.message);
 			}
 			toast.success("Added Task", {
-				position: "top-right",
+				position: "top-center",
 				autoClose: 1000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -71,7 +103,7 @@ export default function taskPage(props) {
 			setTasks(originalTasks);
 			console.log(data.message);
 			toast.success("Updated", {
-				position: "top-right",
+				position: "top-center",
 				autoClose: 1000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -88,10 +120,17 @@ export default function taskPage(props) {
 	const deleteTask = async (id) => {
 		try {
 			const { data } = await axios.delete(url + "/" + id);
+			// const {data} = await fetch("/api/task" + "/" + id, {
+			// 	method: "DELETE",
+			// 	headers: {
+			// 		"Content-Type": "application/json",
+			// 	},
+			// });
+
 			setTasks((prev) => prev.filter((task) => task._id !== id));
 			console.log(data.message);
-			toast.success("Deleted task", {
-				position: "top-right",
+			toast.warning("Deleted task", {
+				position: "top-center",
 				autoClose: 1000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -102,7 +141,7 @@ export default function taskPage(props) {
 				});
 		} catch (error) {
 			toast.error("response.error", {
-				position: "top-right",
+				position: "top-center",
 				autoClose: 1000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -117,7 +156,7 @@ export default function taskPage(props) {
 
 	return (<>
 		<ToastContainer
-        position="top-right"
+        position="top-center"
         autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -182,7 +221,8 @@ export default function taskPage(props) {
 }
 
 export const getServerSideProps = async () => {
-	const { data } = await axios.get(url);
+
+	const { data } = await axios.get(process.env.NEXT_PUBLIC_API_TASK);
 	return {
 		props: {
 			tasks: data.data,

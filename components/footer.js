@@ -3,7 +3,7 @@ import {FaBriefcaseMedical as Logo} from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="lg:fixed bottom-0 bg-white bg-opacity-50 w-full pt-12">
+    <div className="fixed bottom-0 bg-white bg-opacity-50 w-full pt-12 ">
 
 
 

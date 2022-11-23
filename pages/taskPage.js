@@ -222,7 +222,11 @@ export default function  taskPage(props) {
 
 export const getServerSideProps = async () => {
 
-	const { data } = await axios.get(process.env.NEXT_PUBLIC_API_TASK);
+	// const { data } = await axios.get(process.env.NEXT_PUBLIC_API_TASK);
+	// if production use host name
+
+	const { data } = await axios.get("https://wellness-forever.vercel.app/api/task");
+
 	return {
 		props: {
 			tasks: data.data,

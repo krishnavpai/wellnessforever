@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URI);
   }
-  let med = await Medicine.find();
+  let med = await Medicine.findOne({title:"Test Deploy"});
   return {
     props: { med: JSON.parse(JSON.stringify(med)) },
   };

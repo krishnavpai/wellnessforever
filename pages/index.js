@@ -54,7 +54,6 @@ export default function Home() {
             </SwiperSlide>
           </div>
         </Swiper>
-        <span className="text-3xl flex justify-center"> The time is 14237</span>
       </div>
     </>
   );

@@ -54,6 +54,8 @@ export default function Home() {
             </SwiperSlide>
           </div>
         </Swiper>
+        <span className="text-3xl flex justify-center"> Hi</span>
+        
       </div>
     </>
   );
